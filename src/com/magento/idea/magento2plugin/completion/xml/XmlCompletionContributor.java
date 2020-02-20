@@ -105,5 +105,45 @@ public class XmlCompletionContributor extends CompletionContributor {
             ).inFile(xmlFile().withName(string().endsWith("events.xml"))),
             new EventNameCompletionContributor()
         );
+
+        // MFTF ActionGroup name completion contributor
+        extend(CompletionType.BASIC, psiElement(XmlTokenType.XML_ATTRIBUTE_VALUE_TOKEN)
+            .inside(XmlPatterns.xmlAttribute().withName("name")
+                .withParent(XmlPatterns.xmlTag().withName("actionGroup"))
+            ).inFile(xmlFile().withName(string().endsWith("ActionGroup.xml"))),
+            new ActionGroupNameCompletionContributor()
+        );
+
+        // MFTF Section name completion contributor
+        extend(CompletionType.BASIC, psiElement(XmlTokenType.XML_ATTRIBUTE_VALUE_TOKEN)
+            .inside(XmlPatterns.xmlAttribute().withName("name")
+                .withParent(XmlPatterns.xmlTag().withName("section"))
+            ).inFile(xmlFile().withName(string().endsWith("Section.xml"))),
+            new SectionNameCompletionContributor()
+        );
+
+        // MFTF Page name completion contributor
+        extend(CompletionType.BASIC, psiElement(XmlTokenType.XML_ATTRIBUTE_VALUE_TOKEN)
+            .inside(XmlPatterns.xmlAttribute().withName("name")
+                .withParent(XmlPatterns.xmlTag().withName("page"))
+            ).inFile(xmlFile().withName(string().endsWith("Page.xml"))),
+            new PageNameCompletionContributor()
+        );
+
+        // MFTF Page name completion contributor
+        extend(CompletionType.BASIC, psiElement(XmlTokenType.XML_ATTRIBUTE_VALUE_TOKEN)
+            .inside(XmlPatterns.xmlAttribute().withName("name")
+                .withParent(XmlPatterns.xmlTag().withName("entity"))
+            ).inFile(xmlFile().withName(string().endsWith("Data.xml"))),
+            new EntityNameCompletionContributor()
+        );
+
+        // MFTF Test name completion contributor
+        extend(CompletionType.BASIC, psiElement(XmlTokenType.XML_ATTRIBUTE_VALUE_TOKEN)
+            .inside(XmlPatterns.xmlAttribute().withName("name")
+                .withParent(XmlPatterns.xmlTag().withName("test"))
+            ).inFile(xmlFile().withName(string().endsWith("Test.xml"))),
+            new TestNameCompletionContributor()
+        );
     }
 }
